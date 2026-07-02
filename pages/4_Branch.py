@@ -15,15 +15,14 @@ fin   = load_financials()
 red   = load_redundancies()
 hepi  = load_hepi()
 
-# ── Branch selector — use institution name (correct word order) as display label ──
-brs_with_name = (
+# ── Branch selector ───────────────────────────────────────────────────────────
+branch_options = (
     brs.dropna(subset=["ukprn"])
-       .merge(inst[["ukprn", "name"]], on="ukprn", how="left")
-       .sort_values("name")
+       .sort_values("branch_name")["branch_name"]
+       .tolist()
 )
-branch_options = brs_with_name["name"].tolist()
-selected_name = st.selectbox("Select branch", branch_options)
-branch_row = brs_with_name[brs_with_name["name"] == selected_name].iloc[0]
+selected_branch = st.selectbox("Select branch", branch_options)
+branch_row = brs[brs["branch_name"] == selected_branch].iloc[0]
 ukprn = branch_row["ukprn"]
 
 # Gather all data for this institution
@@ -49,7 +48,7 @@ tab_data, tab_points = st.tabs(["All data", "Talking points"])
 # ════════════════════════════════════════════════════════════════════════════
 with tab_data:
     st.header(inst_row["name"])
-    st.caption(f"Branch: {branch_row['branch_name']} ({branch_row['branch_code']})  ·  "
+    st.caption(f"Branch: {selected_branch} ({branch_row['branch_code']})  ·  "
                f"UKPRN: {ukprn}  ·  {inst_row['postcode']}")
 
     # Institution + MP side by side
