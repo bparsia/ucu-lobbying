@@ -117,23 +117,32 @@ with tab_data:
             chart_cols[i % 2].plotly_chart(fig, use_container_width=True)
 
         # Salary data if available
-        sal = fin_inst[["academic_year", "avg_salary", "academic_salary",
-                        "vc_avg_salary"]].dropna(subset=["avg_salary"])
+        # avg_salary / academic_salary are in £k; vc_avg_salary is ratio of VC to avg staff
+        sal = fin_inst[["academic_year", "avg_salary", "academic_salary"]].dropna(subset=["avg_salary"])
         if not sal.empty:
-            st.subheader("Salary data")
+            st.subheader("Salary data (£k)")
             sal_melt = sal.melt("academic_year", var_name="Role", value_name="Salary (£k)")
-            label_map = {"avg_salary": "Average (all staff)",
-                         "academic_salary": "Academic staff",
-                         "vc_avg_salary": "VC (average)"}
+            label_map = {"avg_salary": "Average (all staff)", "academic_salary": "Academic staff"}
             sal_melt["Role"] = sal_melt["Role"].map(label_map)
             fig_sal = px.line(
                 sal_melt, x="academic_year", y="Salary (£k)",
                 color="Role", markers=True,
                 labels={"academic_year": ""},
-                height=260,
+                height=240,
             )
             fig_sal.update_layout(margin=dict(t=10, b=10))
             st.plotly_chart(fig_sal, use_container_width=True)
+
+        vc_ratio_data = fin_inst[["academic_year", "vc_avg_salary"]].dropna(subset=["vc_avg_salary"])
+        if not vc_ratio_data.empty:
+            fig_vc = px.line(
+                vc_ratio_data, x="academic_year", y="vc_avg_salary",
+                markers=True, title="VC salary as multiple of average staff salary",
+                labels={"academic_year": "", "vc_avg_salary": "VC / avg staff (×)"},
+                height=220,
+            )
+            fig_vc.update_layout(margin=dict(t=30, b=10))
+            st.plotly_chart(fig_vc, use_container_width=True)
     else:
         st.info("No financial data available for this institution.")
 
@@ -207,21 +216,22 @@ with tab_points:
                 f"reflecting the institution's dependence on its workforce."
             )
 
-        # VC pay
+        # VC pay — vc_avg_salary is the ratio of VC salary to average staff salary (from kfi.csv)
+        # avg_salary is in £k
         vc = fin_inst.dropna(subset=["vc_avg_salary"])
         if not vc.empty:
             vc_latest = vc.iloc[-1]
-            vc_sal = vc_latest["vc_avg_salary"]
-            vc_year = vc_latest["academic_year"]
-            avg_sal = vc_latest.get("avg_salary")
-            if pd.notna(vc_sal):
-                ratio_str = ""
+            vc_ratio = vc_latest["vc_avg_salary"]   # ratio: VC / avg staff
+            vc_year  = vc_latest["academic_year"]
+            avg_sal  = vc_latest.get("avg_salary")  # £k
+            if pd.notna(vc_ratio):
+                salary_str = ""
                 if pd.notna(avg_sal) and avg_sal > 0:
-                    ratio = vc_sal / avg_sal
-                    ratio_str = f" — {ratio:.1f}× the average staff salary"
+                    vc_abs = vc_ratio * avg_sal  # £k
+                    salary_str = f" (approximately £{vc_abs:,.0f}k)"
                 points.append(
-                    f"**The Vice-Chancellor received average remuneration of £{vc_sal:,.0f}k** "
-                    f"({vc_year}){ratio_str}."
+                    f"**The Vice-Chancellor's salary is {vc_ratio:.1f}× the average staff salary{salary_str}** "
+                    f"({vc_year})."
                 )
 
     # Redundancies
