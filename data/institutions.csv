@@ -1,0 +1,167 @@
+ukprn,name,postcode,town,website,latitude,longitude,constituency_2024,constituency_pcon_code
+10000291,Anglia Ruskin University,CM1 1SQ,Chelmsford,www.anglia.ac.uk,51.741388,0.47452,Chelmsford,E14001159
+10000385,"Arts University Bournemouth, The",BH12 5HH,Poole,www.aub.ac.uk,50.741808,-1.897728,Bournemouth West,E14001116
+10007759,Aston University,B4 7ET,Birmingham,www.aston.ac.uk,52.486965,-1.890225,Birmingham Ladywood,E14001096
+10007857,Bangor University,LL57 2DG,Bangor,www.bangor.ac.uk,53.22921,-4.129444,Bangor Aberconwy,W07000083
+10000571,Bath Spa University,BA2 9BN,Bath,www.bathspa.ac.uk,51.373205,-2.440911,North East Somerset and Hanham,E14001394
+10007760,Birkbeck College,WC1E 7HX,London,www.bbk.ac.uk,51.521893,-0.130334,Holborn and St Pancras,E14001290
+10007140,Birmingham City University,B42 2SU,Birmingham,www.bcu.ac.uk,,,,
+10007811,Bishop Grosseteste University,LN1 3DY,Lincoln,www.bishopg.ac.uk,53.243586,-0.53714,Lincoln,E14001336
+10000824,Bournemouth University,BH12 5BB,Poole,www.bournemouth.ac.uk,50.742968,-1.897159,Bournemouth West,E14001116
+10000961,Brunel University,UB8 3PH,Uxbridge,www.brunel.ac.uk,51.53284,-0.472836,Uxbridge and South Ruislip,E14001558
+10000975,Buckinghamshire New University,HP11 2JZ,High Wycombe,www.bucks.ac.uk,51.627509,-0.752036,Wycombe,E14001600
+10001143,Canterbury Christ Church University,CT1 1UT,Canterbury,www.canterbury.ac.uk,51.276647,1.085808,Canterbury,E14001151
+10007854,Cardiff Metropolitan University,CF5 2SG,Cardiff,www.cardiffmet.ac.uk,,,,
+10007814,Cardiff University,CF10 3AT,Cardiff,www.cardiff.ac.uk,51.489014,-3.179718,Cardiff South and Penarth,W07000091
+10007761,Courtauld Institute Of Art,WC2R 0RN,London,www.courtauld.ac.uk,51.510734,-0.116912,Cities of London and Westminster,E14001172
+10001726,Coventry University,CV1 5FB,Coventry,www.coventry.ac.uk,52.405331,-1.500054,Coventry South,E14001182
+10007822,Cranfield University,MK43 0AL,Bedford,www.cranfield.ac.uk,52.069817,-0.630802,Mid Bedfordshire,E14001359
+10001883,De Montfort University,LE1 9BH,Leicester,www.dmu.ac.uk,52.629906,-1.137724,Leicester South,E14001327
+10007823,Edge Hill University,L39 4QP,Ormskirk,www.edgehill.ac.uk,53.559624,-2.873835,West Lancashire,E14001577
+10007772,Edinburgh Napier University,EH11 4BN,Edinburgh,www.napier.ac.uk,55.924071,-3.28847,Edinburgh South West,S14000081
+10008640,Falmouth University,TR11 4RH,Falmouth,www.falmouth.ac.uk,50.149612,-5.071126,Truro and Falmouth,E14001554
+10007762,Glasgow Caledonian University,G4 0BA,Glasgow,www.gcu.ac.uk,55.867285,-4.250043,Glasgow North,S14000085
+10002681,Glasgow School Of Art.,G3 6RQ,Glasgow,www.gsa.ac.uk,55.865948,-4.263663,Glasgow North,S14000085
+10007833,Glyndwr University,LL11 2AW,Wrexham,www.glyndwr.ac.uk,53.052643,-3.00611,Wrexham,W07000111
+10002718,Goldsmiths' College,SE14 6NW,London,www.gold.ac.uk,51.474144,-0.035375,Lewisham North,E14001332
+10007825,Guildhall School Of Music & Drama,EC2Y 8DT,London,www.gsmd.ac.uk,51.519519,-0.092348,Cities of London and Westminster,E14001172
+10040812,Harper Adams University,TF10 8NB,Newport,www.harper-adams.ac.uk,52.77991,-2.425557,The Wrekin,E14001543
+10007764,Heriot-Watt University,EH14 4AS,Currie,www.hw.ac.uk,55.90938,-3.320681,Edinburgh South West,S14000081
+10007765,Heythrop College,W8 5HN,London,www.heythrop.ac.uk,51.499884,-0.190884,Kensington and Bayswater,E14001310
+10003270,"Imperial College Of Science, Technology And Medicine",SW7 2AZ,London,www.imperial.ac.uk,51.499334,-0.179178,Cities of London and Westminster,E14001172
+10003324,Institute Of Cancer Research: Royal Cancer Hospital (The),SW7 3RP,London,www.icr.ac.uk,51.490784,-0.181622,Kensington and Bayswater,E14001310
+10007766,"Institute Of Education, University Of London",WC1H 0AL,London,www.ioe.ac.uk,51.522979,-0.127939,Holborn and St Pancras,E14001290
+10003645,King'S College London,WC2R 2LS,London,www.kcl.ac.uk,51.511613,-0.116228,Cities of London and Westminster,E14001172
+10003678,Kingston University,KT1 1LQ,Kingston Upon Thames,www.kingston.ac.uk,51.406309,-0.307839,Kingston and Surbiton,E14001312
+10003854,Leeds College Of Art,LS2 9AQ,Leeds,www.leeds-art.ac.uk,53.808445,-1.55178,Leeds Central and Headingley,E14001319
+10034449,Leeds College Of Music,LS2 7PD,Leeds,www.lcm.ac.uk,53.798246,-1.531256,Leeds Central and Headingley,E14001319
+10003861,Leeds Metropolitan University,LS1 3HE,Leeds,www.leedsmet.ac.uk,53.80402,-1.548578,Leeds Central and Headingley,E14001319
+10003863,Leeds Trinity University,LS18 5HD,Leeds,www.leedstrinity.ac.uk,53.848795,-1.647354,Leeds North West,E14001322
+10003956,Liverpool Hope University,L16 9JD,Liverpool,www.hope.ac.uk,53.391527,-2.891907,Liverpool Wavertree,E14001340
+10003957,Liverpool John Moores University,L3 5UX,Liverpool,www.ljmu.ac.uk,53.403702,-2.973176,Liverpool Riverside,E14001338
+10007769,London Business School,NW1 4SA,London,www.london.edu,51.526583,-0.161353,Cities of London and Westminster,E14001172
+10004048,London Metropolitan University,N7 8DB,London,www.londonmet.ac.uk,51.551473,-0.110354,Islington North,E14001305
+10004063,London School Of Economics & Political Science,WC2A 2AE,London,www.lse.ac.uk,,,,
+10007771,London School Of Hygiene And Tropical Medicine,WC1E 7HT,London,www.lshtm.ac.uk,51.520927,-0.130661,Holborn and St Pancras,E14001290
+10004078,London South Bank University,SE1 0AA,London,www.lsbu.ac.uk,51.498709,-0.101747,Bermondsey and Old Southwark,E14001085
+10004113,Loughborough University,LE11 3TU,Loughborough,www.lboro.ac.uk,52.764847,-1.229512,Loughborough,E14001342
+10004180,Manchester Metropolitan University,M15 6BH,Manchester,www.mmu.ac.uk,53.470933,-2.239114,Manchester Rusholme,E14001353
+10004351,Middlesex University,NW4 4BT,London,www.mdx.ac.uk,51.589852,-0.229002,Hendon,E14001279
+10007799,Newcastle University,NE1 7RU,Newcastle Upon Tyne,www.ncl.ac.uk,54.980327,-1.615727,Newcastle upon Tyne Central and West,E14001377
+10007832,Newman University,B32 3NT,Birmingham,www.newman.ac.uk,52.433975,-1.993875,Birmingham Edgbaston,E14001092
+10008816,Northern School Of Contemporary Dance,LS7 4BH,Leeds,www.nscd.ac.uk,53.813066,-1.533202,Leeds North East,E14001321
+10001282,Northumbria University Newcastle,NE1 8ST,Newcastle Upon Tyne,www.northumbria.ac.uk,54.976634,-1.607451,Newcastle upon Tyne Central and West,E14001377
+10004775,Norwich University Of The Arts,NR2 4SN,Norwich,www.nua.ac.uk,52.630593,1.296577,Norwich South,E14001409
+10004797,Nottingham Trent University,NG1 4BU,Nottingham,www.ntu.ac.uk,52.956456,-1.152075,Nottingham East,E14001410
+10007773,Open University(The),MK7 6AA,Milton Keynes,www.open.ac.uk,52.024924,-0.709727,Milton Keynes Central,E14001369
+10004930,Oxford Brookes University,OX3 0BP,Oxford,www.brookes.ac.uk,51.754386,-1.223182,Oxford East,E14001419
+10007801,Plymouth University,PL4 8AA,Plymouth,www.plymouth.ac.uk,50.375437,-4.13794,Plymouth Sutton and Devonport,E14001427
+10007856,Prifysgol Aberystwyth,SY23 2AX,Aberystwyth,www.aber.ac.uk,,,,
+10005337,"Queen Margaret University, Edinburgh",EH21 6UU,Musselburgh,www.qmu.ac.uk,55.931277,-3.073062,Edinburgh East and Musselburgh,S14000078
+10007775,Queen Mary University Of London,E1 4NS,London,www.qmul.ac.uk,51.524637,-0.040683,Bethnal Green and Stepney,E14001086
+10005343,Queen'S University Of Belfast,BT7 1NN,Belfast,www.qub.ac.uk,54.584766,-5.934438,Belfast South and Mid Down,N05000003
+10005389,Ravensbourne,SE10 0EW,London,www.rave.ac.uk,51.501677,0.005678,Greenwich and Woolwich,E14001257
+10007776,Roehampton University,SW15 5PJ,London,www.roehampton.ac.uk,51.455142,-0.246918,Putney,E14001434
+10005523,Rose Bruford College,DA15 9DF,Sidcup,www.bruford.ac.uk,51.439376,0.107096,Old Bexley and Sidcup,E14001414
+10007835,Royal Academy Of Music,NW1 5HT,London,www.ram.ac.uk,51.523499,-0.151675,Cities of London and Westminster,E14001172
+10005545,Royal Agricultural University,GL7 6JS,Cirencester,www.rac.ac.uk,51.709513,-1.994908,South Cotswolds,E14001482
+10007777,Royal College Of Art(The),SW7 2EU,London,www.rca.ac.uk,51.501355,-0.178449,Cities of London and Westminster,E14001172
+10007778,Royal College Of Music,SW7 2BS,London,www.rcm.ac.uk,51.49928,-0.176889,Cities of London and Westminster,E14001172
+10005561,Royal Conservatoire Of Scotland,G2 3DB,Glasgow,www.rcs.ac.uk,55.865808,-4.257581,Glasgow North,S14000085
+10005553,Royal Holloway College And Bedford New College,TW20 0EX,Egham,www.rhul.ac.uk,51.424804,-0.566698,Windsor,E14001588
+10007837,Royal Northern College Of Music,M13 9RD,Manchester,www.rncm.ac.uk,53.468574,-2.236961,Manchester Rusholme,E14001353
+10007838,Royal Welsh College Of Music And Drama Limited,CF10 3ER,Cardiff,www.rwcmd.ac.uk,51.486163,-3.184152,Cardiff South and Penarth,W07000091
+10007780,School Of Oriental And African Studies,WC1H 0XG,London,www.soas.ac.uk,51.522352,-0.129234,Holborn and St Pancras,E14001290
+10007781,School Of Pharmacy University Of London(The),WC1N 1AX,London,www.pharmacy.ac.uk,51.525085,-0.122432,Holborn and St Pancras,E14001290
+10005790,Sheffield Hallam University,S1 1WB,Sheffield,www.shu.ac.uk,53.379149,-1.465225,Sheffield Central,E14001467
+10006022,Southampton Solent University,SO14 0YN,Southampton,www.solent.ac.uk,50.907581,-1.401013,Southampton Itchen,E14001499
+10005700,Sruc,EH9 3JG,Edinburgh,www.sruc.ac.uk,55.921619,-3.176229,Edinburgh South,S14000080
+10008026,St Mary'S University College,BT12 6FE,Belfast,www.stmarys-belfast.ac.uk,54.593635,-5.962026,Belfast West,N05000004
+10007843,"St Mary'S University, Twickenham",TW1 4SX,Twickenham,www.smuc.ac.uk,51.436151,-0.335885,Twickenham,E14001556
+10007782,"St. George'S, University Of London",SW17 0RE,London,www.sgul.ac.uk,51.427798,-0.175204,Tooting,E14001550
+10006299,Staffordshire University,ST4 2DE,Stoke-On-Trent,www.staffs.ac.uk,53.009219,-2.180351,Stoke-on-Trent Central,E14001520
+10008010,Stranmillis University College,BT9 5DY,Belfast,www.stran.ac.uk,54.572814,-5.938522,Belfast South and Mid Down,N05000003
+10007846,Swansea Metropolitan University,SA1 6ED,Swansea,www.smu.ac.uk,51.624658,-3.949446,Swansea West,W07000108
+10007855,Swansea University,SA2 8PP,Swansea,www.swan.ac.uk,51.609631,-3.980635,Swansea West,W07000108
+10007161,Teesside University,TS1 3BA,Middlesbrough,www.tees.ac.uk,54.572089,-1.234709,Middlesbrough and Thornaby East,E14001367
+10001478,The City University,EC1V 0HB,London,www.city.ac.uk,51.527903,-0.103099,Islington South and Finsbury,E14001306
+10001653,The Conservatoire For Dance And Drama,WC1H 9JJ,London,www.cdd.ac.uk,51.526189,-0.129076,Holborn and St Pancras,E14001290
+10003945,The Liverpool Institute For Performing Arts,L1 9HF,Liverpool,www.lipa.ac.uk,53.399674,-2.972272,Liverpool Riverside,E14001338
+10005500,The Robert Gordon University,AB10 7FY,Aberdeen,www.rgu.ac.uk,57.117934,-2.144052,Aberdeen South,S14000061
+10007816,The Royal Central School Of Speech And Drama,NW3 3HY,London,www.cssd.ac.uk,51.544328,-0.17418,Hampstead and Highgate,E14001265
+10007779,The Royal Veterinary College,NW1 0TU,London,www.rvc.ac.uk,51.53683,-0.133773,Holborn and St Pancras,E14001290
+10007787,The University Of Buckingham,MK18 1EG,Buckingham,www.buckingham.ac.uk,51.996009,-0.99182,Buckingham and Bletchley,E14001141
+10007137,The University Of Chichester,PO19 6PE,Chichester,www.chi.ac.uk,50.844301,-0.774991,Chichester,E14001166
+10007842,The University Of Cumbria,CA1 2HH,Carlisle,www.cumbria.ac.uk,54.891169,-2.921421,Carlisle,E14001152
+10007798,The University Of Manchester,M13 9PL,Manchester,www.manchester.ac.uk,53.466926,-2.233578,Manchester Rusholme,E14001353
+10007165,The University Of Westminster,W1B 2HW,London,www.westminster.ac.uk,51.516794,-0.143342,Cities of London and Westminster,E14001172
+10008017,Trinity Laban Conservatoire Of Music And Dance Ltd,SE10 9JF,London,www.trinitylaban.ac.uk,51.483587,-0.007172,Greenwich and Woolwich,E14001257
+10014001,University Campus Suffolk Ltd,IP4 1QJ,Ipswich,www.ucs.ac.uk,52.052374,1.163356,Ipswich,E14001302
+10000712,University College Birmingham,B3 1JB,Birmingham,www.ucb.ac.uk,52.481855,-1.905934,Birmingham Ladywood,E14001096
+10007784,University College London,WC1E 6BT,London,www.ucl.ac.uk,51.523571,-0.132398,Holborn and St Pancras,E14001290
+10006427,University For The Creative Arts,GU9 7DS,Farnham,www.ucreative.ac.uk,51.216704,-0.804799,Farnham and Bordon,E14001234
+10007783,University Of Aberdeen,AB24 3FX,Aberdeen,www.abdn.ac.uk,57.164841,-2.100237,Aberdeen North,S14000060
+10007849,University Of Abertay Dundee,DD1 1HG,Dundee,www.abertay.ac.uk,56.463117,-2.974299,Dundee Central,S14000075
+10007850,University Of Bath (The),BA2 7AY,Bath,www.bath.ac.uk,51.379324,-2.327157,Bath,E14001080
+10007152,University Of Bedfordshire,LU1 3JU,Luton,www.beds.ac.uk,51.878258,-0.411514,Luton South and South Bedfordshire,E14001346
+10006840,University Of Birmingham,B15 2TT,Birmingham,www.birmingham.ac.uk,52.453282,-1.92789,Birmingham Edgbaston,E14001092
+10006841,University Of Bolton,BL3 5AB,Bolton,www.bolton.ac.uk,53.573204,-2.435916,Bolton South and Walkden,E14001111
+10007785,University Of Bradford,BD7 1DP,Bradford,www.bradford.ac.uk,53.791584,-1.763774,Bradford West,E14001120
+10000886,University Of Brighton,BN2 4AT,Brighton,www.brighton.ac.uk,50.842448,-0.119142,Brighton Kemptown and Peacehaven,E14001129
+10007786,University Of Bristol,BS8 1TH,Bristol,www.bristol.ac.uk,51.459064,-2.603293,Bristol Central,E14001131
+10007788,University Of Cambridge,CB2 1TN,Cambridge,www.cam.ac.uk,52.205118,0.116208,Cambridge,E14001149
+10007141,University Of Central Lancashire,PR1 2HE,Preston,www.uclan.ac.uk,53.761354,-2.707381,Preston,E14001433
+10007848,University Of Chester,CH1 4BJ,Chester,www.chester.ac.uk,53.19862,-2.898167,Chester North and Neston,E14001163
+10007851,University Of Derby,DE22 1GB,Derby,www.derby.ac.uk,52.938473,-1.496678,Mid Derbyshire,E14001362
+10007852,University Of Dundee,DD1 4HN,Dundee,www.dundee.ac.uk,56.457336,-2.978272,Dundee Central,S14000075
+10007143,University Of Durham,DH1 3LE,Durham,www.dur.ac.uk,54.768122,-1.571884,City of Durham,E14001173
+10007789,University Of East Anglia,NR4 7TJ,Norwich,www.uea.ac.uk,52.622394,1.241412,Norwich South,E14001409
+10007144,University Of East London,E16 2RD,London,www.uel.ac.uk,51.507567,0.063234,West Ham and Beckton,E14001576
+10007790,University Of Edinburgh,EH1 1HT,Edinburgh,www.ed.ac.uk,55.947994,-3.188111,Edinburgh East and Musselburgh,S14000078
+10007791,University Of Essex,CO4 3SQ,Colchester,www.essex.ac.uk,51.87681,0.946585,Harwich and North Essex,E14001273
+10007792,University Of Exeter,EX4 4PY,Exeter,www.exeter.ac.uk,50.735413,-3.534519,Exeter,E14001231
+10007794,University Of Glasgow,G12 8QQ,Glasgow,www.gla.ac.uk,55.871746,-4.288345,Glasgow North,S14000085
+10007145,University Of Gloucestershire,GL50 2RH,Cheltenham,www.glos.ac.uk,51.887603,-2.087706,Cheltenham,E14001161
+10007146,University Of Greenwich,SE10 9LS,London,www.greenwich.ac.uk,51.484468,-0.003979,Greenwich and Woolwich,E14001257
+10007147,University Of Hertfordshire,AL10 9AB,Hatfield,www.herts.ac.uk,51.752882,-0.242179,Welwyn Hatfield,E14001573
+10007148,University Of Huddersfield,HD1 3DH,Huddersfield,www.hud.ac.uk,53.643678,-1.778726,Huddersfield,E14001297
+10007149,University Of Hull,HU6 7RX,Hull,www.hull.ac.uk,53.771798,-0.36639,Kingston upon Hull North and Cottingham,E14001314
+10007767,University Of Keele,ST5 5BG,Newcastle,www.keele.ac.uk,53.00309,-2.273713,Newcastle-under-Lyme,E14001380
+10007150,University Of Kent,CT2 7NZ,Canterbury,www.kent.ac.uk,51.298507,1.071005,Canterbury,E14001151
+10007768,University Of Lancaster,LA1 4YW,Lancaster,www.lancs.ac.uk,54.010429,-2.786447,Lancaster and Wyre,E14001318
+10007795,University Of Leeds,LS2 9JT,Leeds,www.leeds.ac.uk,53.807974,-1.553334,Leeds Central and Headingley,E14001319
+10007796,University Of Leicester,LE1 7RH,Leicester,www.le.ac.uk,52.620665,-1.125526,Leicester South,E14001327
+10007151,University Of Lincoln,LN6 7TS,Lincoln,www.lincoln.ac.uk,53.228487,-0.547796,Lincoln,E14001336
+10006842,University Of Liverpool,L69 3BX,Liverpool,www.liv.ac.uk,53.380332,-2.976431,Liverpool Riverside,E14001338
+10007797,University Of London,WC1E 7HU,London,www.lon.ac.uk,51.520644,-0.128698,Holborn and St Pancras,E14001290
+10007138,"University Of Northampton,The",NN2 5PH,Northampton,www.northampton.ac.uk,,,,
+10007154,"University Of Nottingham, The",NG7 2RD,Nottingham,www.nottingham.ac.uk,52.940393,-1.189663,Nottingham South,E14001412
+10007774,University Of Oxford,OX1 2JD,Oxford,www.ox.ac.uk,51.758043,-1.261992,Oxford West and Abingdon,E14001420
+10007155,University Of Portsmouth,PO1 2UP,Portsmouth,www.port.ac.uk,50.795177,-1.093615,Portsmouth South,E14001432
+10007802,University Of Reading,RG6 6UR,Reading,www.reading.ac.uk,51.440609,-0.947044,Earley and Woodley,E14001210
+10007156,"University Of Salford, The",M5 4WT,Salford,www.salford.ac.uk,53.483504,-2.270649,Salford,E14001459
+10007157,University Of Sheffield,S10 2TN,Sheffield,www.shef.ac.uk,53.381381,-1.48853,Sheffield Central,E14001467
+10007793,University Of South Wales/Prifysgol De Cymru,CF37 1DL,Pontypridd,www.southwales.ac.uk,51.589204,-3.326003,Pontypridd,W07000106
+10007158,University Of Southampton,SO17 1BJ,Southampton,www.soton.ac.uk,50.934091,-1.395705,Southampton Test,E14001500
+10007803,University Of St Andrews,KY16 9AJ,St. Andrews,www.st-andrews.ac.uk,56.341231,-2.793292,North East Fife,S14000100
+10037449,University Of St Mark & St John,PL6 8BH,Plymouth,,50.420852,-4.110786,Plymouth Moor View,E14001426
+10007804,University Of Stirling,FK9 4LA,Stirling,www.stir.ac.uk,56.145457,-3.920015,Stirling and Strathallan,S14000105
+10007805,University Of Strathclyde,G1 1XQ,Glasgow,www.strath.ac.uk,55.861245,-4.244692,Glasgow North East,S14000086
+10007159,University Of Sunderland,SR1 3SD,Sunderland,www.sunderland.ac.uk,54.904464,-1.390987,Sunderland Central,E14001531
+10007160,University Of Surrey,GU2 7XH,Guildford,www.surrey.ac.uk,51.242685,-0.587936,Guildford,E14001258
+10007806,University Of Sussex,BN1 9RH,Brighton,www.sussex.ac.uk,50.864464,-0.087049,Brighton Pavilion,E14001130
+10007162,"University Of The Arts, London",WC1V 7EY,London,www.arts.ac.uk,51.517766,-0.116363,Holborn and St Pancras,E14001290
+10007114,University Of The Highlands And Islands,IV3 5SQ,Inverness,www.uhi.ac.uk,57.469388,-4.230244,"Inverness, Skye and West Ross-shire",S14000094
+10007164,"University Of The West Of England, Bristol",BS16 1QY,Bristol,www.uwe.ac.uk,51.501078,-2.547459,Filton and Bradley Stoke,E14001237
+10007800,University Of The West Of Scotland,PA1 2BE,Paisley,www.uws.ac.uk,55.843323,-4.430071,Paisley and Renfrewshire South,S14000102
+10007807,University Of Ulster,BT52 1SA,Coleraine,www.ulster.ac.uk,55.148761,-6.678304,East Londonderry,N05000006
+10008574,University Of Wales Prifysgol Cymru,CF10 3NS,Cardiff,www.wales.ac.uk,51.485538,-3.181039,Cardiff South and Penarth,W07000091
+10007858,University Of Wales: Trinity Saint David,SA31 3EP,Carmarthen,www.trinitysaintdavid.ac.uk,51.85837,-4.328737,Caerfyrddin,W07000087
+10007163,University Of Warwick,CV4 7AL,Coventry,www.warwick.ac.uk,52.385682,-1.56482,Coventry South,E14001182
+10006566,University Of West London,W5 5RF,London,www.uwl.ac.uk,51.50726,-0.302991,Ealing Central and Acton,E14001207
+10003614,University Of Winchester,SO22 4NR,Winchester,www.winchester.ac.uk,51.059996,-1.326729,Winchester,E14001587
+10007166,University Of Wolverhampton,WV1 1LY,Wolverhampton,www.wlv.ac.uk,52.588182,-2.12807,Wolverhampton West,E14001596
+10007139,"University Of Worcester, The",WR2 6AJ,Worcester,www.worc.ac.uk,52.197379,-2.243081,Worcester,E14001597
+10007167,University Of York,YO10 5DD,York,www.york.ac.uk,53.948437,-1.053553,York Central,E14001604
+10007657,Writtle College,CM1 3RR,Chelmsford,www.writtle.ac.uk,51.737202,0.428159,North West Essex,E14001402
+10007713,York St John University,YO31 7EX,York,www.yorksj.ac.uk,53.964862,-1.079552,York Central,E14001604

@@ -1,0 +1,17 @@
+# Some data sources
+
+We're looking to generate information on a branch level supporting lobbying of MPs. This might also be useful for negotiations but that's secondary.
+
+Thus we need to map instituions to constituencies and start accumulating data.
+
+Eventually, we might want to include tracking of meetings, etc. but for now we just want to collate public data so people can mobilise it.
+
+
+Here are some initial sources:
+
+- https://www.hepi.ac.uk/2024/06/20/new-constituency-level-data-prove-the-value-of-international-students-to-the-uk/
+   - This is a bit stale but has constituency level data.
+- https://github.com/mtwest2718/ukhe-finances
+   - Has institutional data. Might also be a bit dated but has extraction scripts on finances.
+- https://qmucu.org/qmul-transformation/uk-he-shrinking/
+   - Tracks redundancy annoucements. Good for lots of reasons including identified hot spots.
