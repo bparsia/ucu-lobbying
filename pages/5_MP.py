@@ -5,6 +5,7 @@ from utils import (
     load_institutions, load_constituencies, load_branches,
     load_financials, load_redundancies, load_hepi,
     latest_financials, fmt_gbp, fmt_pct, institutions_within_km,
+    mp_slug, build_mp_slug_map,
 )
 
 inst  = load_institutions()
@@ -17,7 +18,12 @@ latest = latest_financials(fin)
 
 # ── MP selector ───────────────────────────────────────────────────────────────
 mp_options = cons.sort_values("mp_name")["mp_name"].tolist()
-selected_mp = st.selectbox("Select MP", mp_options)
+slug_map = build_mp_slug_map(cons)
+slug_param = st.query_params.get("mp", "")
+default_mp = slug_map.get(slug_param, mp_options[0])
+default_idx = mp_options.index(default_mp) if default_mp in mp_options else 0
+selected_mp = st.selectbox("Select MP", mp_options, index=default_idx)
+st.query_params["mp"] = mp_slug(selected_mp)
 con_row = cons[cons["mp_name"] == selected_mp].iloc[0]
 con_name = con_row["constituency_name"]
 

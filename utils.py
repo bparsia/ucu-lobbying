@@ -104,6 +104,43 @@ def fmt_pct(v: float) -> str:
     return f"{v:+.1f}%" if v != 0 else "0.0%"
 
 
+def slugify(text: str) -> str:
+    """Convert a string to a URL-safe slug."""
+    import re
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def branch_slug(branch_name: str) -> str:
+    """Short slug for a branch name.
+
+    'Exeter, University of'                  -> 'exeter'
+    'Westminster, University of (Cavendish)' -> 'westminster-cavendish'
+    """
+    import re
+    # Extract parenthetical suffix if present
+    m = re.search(r"\(([^)]+)\)", branch_name)
+    suffix = f"-{slugify(m.group(1))}" if m else ""
+    base = branch_name.split(",")[0].strip() if "," in branch_name else branch_name
+    return slugify(base) + suffix
+
+
+def mp_slug(mp_name: str) -> str:
+    """Full-name slug for an MP: 'Keir Starmer' -> 'keir-starmer'."""
+    return slugify(mp_name)
+
+
+def build_branch_slug_map(brs: pd.DataFrame) -> dict[str, str]:
+    """Return {slug: branch_name} for all branches with a UKPRN."""
+    names = brs.dropna(subset=["ukprn"])["branch_name"].tolist()
+    return {branch_slug(n): n for n in names}
+
+
+def build_mp_slug_map(cons: pd.DataFrame) -> dict[str, str]:
+    """Return {slug: mp_name} for all MPs."""
+    names = cons["mp_name"].dropna().unique().tolist()
+    return {mp_slug(n): n for n in names}
+
+
 def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """Great-circle distance in km between two lat/lon points."""
     import math

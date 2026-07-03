@@ -6,6 +6,7 @@ from utils import (
     load_institutions, load_constituencies, load_branches,
     load_financials, load_redundancies, load_hepi,
     fmt_gbp, fmt_pct, institutions_within_km,
+    branch_slug, build_branch_slug_map,
 )
 
 inst  = load_institutions()
@@ -21,7 +22,12 @@ branch_options = (
        .sort_values("branch_name")["branch_name"]
        .tolist()
 )
-selected_branch = st.selectbox("Select branch", branch_options)
+slug_map = build_branch_slug_map(brs)
+slug_param = st.query_params.get("branch", "")
+default_branch = slug_map.get(slug_param, branch_options[0])
+default_idx = branch_options.index(default_branch) if default_branch in branch_options else 0
+selected_branch = st.selectbox("Select branch", branch_options, index=default_idx)
+st.query_params["branch"] = branch_slug(selected_branch)
 branch_row = brs[brs["branch_name"] == selected_branch].iloc[0]
 ukprn = branch_row["ukprn"]
 
