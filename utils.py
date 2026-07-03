@@ -32,7 +32,10 @@ def load_institutions() -> pd.DataFrame:
 
 @st.cache_data
 def load_constituencies() -> pd.DataFrame:
-    return pd.read_csv(DATA / "constituencies.csv", dtype={"pcon_code": str, "mp_id": str})
+    df = pd.read_csv(DATA / "constituencies.csv", dtype={"pcon_code": str, "mp_id": str})
+    df["latitude"]  = pd.to_numeric(df["latitude"],  errors="coerce")
+    df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
+    return df
 
 
 @st.cache_data
@@ -99,3 +102,31 @@ def fmt_pct(v: float) -> str:
     if pd.isna(v):
         return "n/a"
     return f"{v:+.1f}%" if v != 0 else "0.0%"
+
+
+def haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Great-circle distance in km between two lat/lon points."""
+    import math
+    R = 6371.0
+    φ1, φ2 = math.radians(lat1), math.radians(lat2)
+    dφ = math.radians(lat2 - lat1)
+    dλ = math.radians(lon2 - lon1)
+    a = math.sin(dφ/2)**2 + math.cos(φ1) * math.cos(φ2) * math.sin(dλ/2)**2
+    return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+
+def institutions_within_km(
+    inst: pd.DataFrame,
+    lat: float,
+    lon: float,
+    radius_km: float,
+    exclude_ukprn: str | None = None,
+) -> pd.DataFrame:
+    """Return institutions within radius_km of (lat, lon), sorted by distance."""
+    df = inst.dropna(subset=["latitude", "longitude"]).copy()
+    if exclude_ukprn:
+        df = df[df["ukprn"] != exclude_ukprn]
+    df["distance_km"] = df.apply(
+        lambda r: haversine_km(lat, lon, r["latitude"], r["longitude"]), axis=1
+    )
+    return df[df["distance_km"] <= radius_km].sort_values("distance_km")

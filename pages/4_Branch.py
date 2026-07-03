@@ -5,7 +5,7 @@ import pandas as pd
 from utils import (
     load_institutions, load_constituencies, load_branches,
     load_financials, load_redundancies, load_hepi,
-    fmt_gbp, fmt_pct,
+    fmt_gbp, fmt_pct, institutions_within_km,
 )
 
 inst  = load_institutions()
@@ -162,6 +162,46 @@ with tab_data:
                     st.write(f"[Source]({r['source_url']})")
     else:
         st.info("No redundancy entries for this institution.")
+
+    st.divider()
+
+    # Nearby institutions
+    st.subheader("Nearby institutions")
+    inst_lat = inst_row.get("latitude")
+    inst_lon = inst_row.get("longitude")
+    if pd.notna(inst_lat) and pd.notna(inst_lon):
+        radius = st.slider("Radius (km)", 1, 50, 10, key="branch_radius")
+        nearby = institutions_within_km(inst, inst_lat, inst_lon, radius, exclude_ukprn=ukprn)
+        if nearby.empty:
+            st.info(f"No other institutions within {radius} km.")
+        else:
+            nearby_full = nearby.merge(
+                cons[["constituency_name", "mp_name", "mp_party"]],
+                left_on="constituency_2024", right_on="constituency_name", how="left"
+            )
+            red_flags = red.groupby("ukprn")["compulsory"].apply(
+                lambda x: "compulsory" in x.values
+            ).reset_index().rename(columns={"compulsory": "has_compulsory"})
+            nearby_full = nearby_full.merge(red_flags, on="ukprn", how="left")
+            nearby_full["has_compulsory"] = nearby_full["has_compulsory"].fillna(False)
+
+            tbl = nearby_full[["name", "distance_km", "constituency_2024",
+                                "mp_name", "mp_party", "has_compulsory"]].copy()
+            tbl["distance_km"] = tbl["distance_km"].apply(lambda v: f"{v:.1f} km")
+            tbl["has_compulsory"] = tbl["has_compulsory"].map({True: "⚠️ Yes", False: ""})
+            tbl.columns = ["Institution", "Distance", "Constituency", "MP", "Party", "Compulsory redundancies"]
+            st.dataframe(tbl, use_container_width=True, hide_index=True)
+
+            # Unique MPs across nearby institutions
+            nearby_mps = nearby_full[["mp_name", "mp_party", "constituency_2024"]].dropna(subset=["mp_name"])
+            nearby_mps = nearby_mps[nearby_mps["constituency_2024"] != con_name]
+            nearby_mps = nearby_mps.drop_duplicates("mp_name")
+            if not nearby_mps.empty:
+                st.caption(f"**Additional MPs you could approach** (representing nearby constituencies):")
+                for _, mp in nearby_mps.iterrows():
+                    st.write(f"- {mp['mp_name']} ({mp['mp_party']}) — {mp['constituency_2024']}")
+    else:
+        st.info("No location data available for this institution.")
 
 
 # ════════════════════════════════════════════════════════════════════════════

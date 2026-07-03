@@ -16,7 +16,8 @@ pages = [
     st.Page("pages/2_Financials.py",   title="Financials",     icon="💰"),
     st.Page("pages/3_Redundancies.py", title="Redundancies",   icon="⚠️"),
     st.Page("pages/4_Branch.py",       title="Branch",         icon="🏛️"),
-    st.Page("pages/5_About.py",        title="About",          icon="ℹ️"),
+    st.Page("pages/5_MP.py",           title="MP",             icon="🏛️"),
+    st.Page("pages/6_About.py",        title="About",          icon="ℹ️"),
 ]
 
 pg = st.navigation(pages)

@@ -22,6 +22,7 @@ FETCH = [
     "fetch/fetch_postcodes.py",
     "fetch/fetch_kfi.py",
     "fetch/fetch_hepi.py",
+    "fetch/fetch_constituency_centroids.py",
 ]
 DERIVE = [
     "derive_institutions.py",
