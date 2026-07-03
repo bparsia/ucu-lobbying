@@ -5,7 +5,7 @@ from utils import (
     load_institutions, load_constituencies, load_branches,
     load_financials, load_redundancies, load_hepi,
     latest_financials, fmt_gbp, fmt_pct, institutions_within_km,
-    mp_slug, build_mp_slug_map,
+    mp_slug, build_mp_slug_map, branch_slug,
 )
 
 inst  = load_institutions()
@@ -15,6 +15,20 @@ fin   = load_financials()
 red   = load_redundancies()
 hepi  = load_hepi()
 latest = latest_financials(fin)
+
+# UKPRN -> first branch slug lookup (reused in tables)
+_ukprn_to_bslug = (
+    brs.dropna(subset=["ukprn"])
+       .assign(bslug=lambda d: d["branch_name"].map(branch_slug))
+       .groupby("ukprn")["bslug"].first()
+)
+
+def _branch_url(ukprn):
+    slug = _ukprn_to_bslug.get(ukprn)
+    return f"Branch?branch={slug}" if slug else None
+
+def _mp_url(name):
+    return f"MP?mp={mp_slug(name)}" if pd.notna(name) else None
 
 # ── MP selector ───────────────────────────────────────────────────────────────
 mp_options = cons.sort_values("mp_name")["mp_name"].tolist()
@@ -59,9 +73,13 @@ else:
     _show = _show.merge(red_flags, on="ukprn", how="left")
     _show["surplus_vs_income"] = _show["surplus_vs_income"].apply(fmt_pct)
     _show["has_compulsory"] = _show["has_compulsory"].fillna(False).map({True: "⚠️ Yes", False: ""})
-    tbl = _show[["name", "branch_name", "surplus_vs_income", "academic_year", "has_compulsory"]].copy()
-    tbl.columns = ["Institution", "Branch", "Surplus/deficit", "Year", "Compulsory redundancies"]
-    st.dataframe(tbl, use_container_width=True, hide_index=True)
+    _show["branch_url"] = _show["ukprn"].map(_branch_url)
+    tbl = _show[["name", "branch_url", "branch_name", "surplus_vs_income", "academic_year", "has_compulsory"]].copy()
+    tbl.columns = ["Institution", "Branch link", "Branch", "Surplus/deficit", "Year", "Compulsory redundancies"]
+    st.dataframe(
+        tbl, use_container_width=True, hide_index=True,
+        column_config={"Branch link": st.column_config.LinkColumn("Branch link", display_text="→ Branch")},
+    )
 
 st.divider()
 
@@ -105,11 +123,19 @@ if pd.notna(con_lat) and pd.notna(con_lon):
         nearby_full["has_compulsory"] = nearby_full["has_compulsory"].fillna(False).map({True: "⚠️ Yes", False: ""})
         nearby_full["surplus_vs_income"] = nearby_full["surplus_vs_income"].apply(fmt_pct)
         nearby_full["distance_km"] = nearby_full["distance_km"].apply(lambda v: f"{v:.1f} km")
+        nearby_full["branch_url"] = nearby_full["ukprn"].map(_branch_url)
+        nearby_full["mp_url"] = nearby_full["mp_name"].map(_mp_url)
 
-        tbl2 = nearby_full[["name", "distance_km", "branch_name", "constituency_2024",
-                             "mp_name", "surplus_vs_income", "academic_year", "has_compulsory"]].copy()
-        tbl2.columns = ["Institution", "Distance", "Branch", "Constituency",
-                        "MP", "Surplus/deficit", "Year", "Compulsory redundancies"]
-        st.dataframe(tbl2, use_container_width=True, hide_index=True)
+        tbl2 = nearby_full[["name", "branch_url", "distance_km", "branch_name", "constituency_2024",
+                             "mp_name", "mp_url", "surplus_vs_income", "academic_year", "has_compulsory"]].copy()
+        tbl2.columns = ["Institution", "Branch link", "Distance", "Branch", "Constituency",
+                        "MP", "MP link", "Surplus/deficit", "Year", "Compulsory redundancies"]
+        st.dataframe(
+            tbl2, use_container_width=True, hide_index=True,
+            column_config={
+                "Branch link": st.column_config.LinkColumn("Branch link", display_text="→ Branch"),
+                "MP link":     st.column_config.LinkColumn("MP link",     display_text="→ MP page"),
+            },
+        )
 else:
     st.info("No centroid data available for this constituency.")

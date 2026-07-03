@@ -6,7 +6,7 @@ from utils import (
     load_institutions, load_constituencies, load_branches,
     load_financials, load_redundancies, load_hepi,
     fmt_gbp, fmt_pct, institutions_within_km,
-    branch_slug, build_branch_slug_map,
+    branch_slug, build_branch_slug_map, mp_slug,
 )
 
 inst  = load_institutions()
@@ -191,21 +191,42 @@ with tab_data:
             nearby_full = nearby_full.merge(red_flags, on="ukprn", how="left")
             nearby_full["has_compulsory"] = nearby_full["has_compulsory"].fillna(False)
 
-            tbl = nearby_full[["name", "distance_km", "constituency_2024",
-                                "mp_name", "mp_party", "has_compulsory"]].copy()
+            # Build per-UKPRN branch slug (first branch match)
+            ukprn_to_slug = (
+                brs.dropna(subset=["ukprn"])
+                   .assign(bslug=lambda d: d["branch_name"].map(branch_slug))
+                   .groupby("ukprn")["bslug"].first()
+            )
+            nearby_full["branch_url"] = nearby_full["ukprn"].map(
+                lambda u: f"Branch?branch={ukprn_to_slug[u]}" if u in ukprn_to_slug.index else None
+            )
+            nearby_full["mp_url"] = nearby_full["mp_name"].map(
+                lambda n: f"MP?mp={mp_slug(n)}" if pd.notna(n) else None
+            )
+
+            tbl = nearby_full[["name", "branch_url", "distance_km", "constituency_2024",
+                                "mp_name", "mp_url", "mp_party", "has_compulsory"]].copy()
             tbl["distance_km"] = tbl["distance_km"].apply(lambda v: f"{v:.1f} km")
             tbl["has_compulsory"] = tbl["has_compulsory"].map({True: "⚠️ Yes", False: ""})
-            tbl.columns = ["Institution", "Distance", "Constituency", "MP", "Party", "Compulsory redundancies"]
-            st.dataframe(tbl, use_container_width=True, hide_index=True)
+            tbl.columns = ["Institution", "Branch link", "Distance", "Constituency",
+                           "MP", "MP link", "Party", "Compulsory redundancies"]
+            st.dataframe(
+                tbl, use_container_width=True, hide_index=True,
+                column_config={
+                    "Branch link": st.column_config.LinkColumn("Branch link", display_text="→ Branch"),
+                    "MP link":     st.column_config.LinkColumn("MP link",     display_text="→ MP page"),
+                },
+            )
 
             # Unique MPs across nearby institutions
-            nearby_mps = nearby_full[["mp_name", "mp_party", "constituency_2024"]].dropna(subset=["mp_name"])
+            nearby_mps = nearby_full[["mp_name", "mp_url", "mp_party", "constituency_2024"]].dropna(subset=["mp_name"])
             nearby_mps = nearby_mps[nearby_mps["constituency_2024"] != con_name]
             nearby_mps = nearby_mps.drop_duplicates("mp_name")
             if not nearby_mps.empty:
                 st.caption(f"**Additional MPs you could approach** (representing nearby constituencies):")
                 for _, mp in nearby_mps.iterrows():
-                    st.write(f"- {mp['mp_name']} ({mp['mp_party']}) — {mp['constituency_2024']}")
+                    url = mp["mp_url"] or ""
+                    st.write(f"- [{mp['mp_name']}]({url}) ({mp['mp_party']}) — {mp['constituency_2024']}")
     else:
         st.info("No location data available for this institution.")
 
