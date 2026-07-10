@@ -1,6 +1,7 @@
 """Overview — sector at a glance."""
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
 from utils import (
     load_institutions, load_constituencies, load_branches,
@@ -84,21 +85,46 @@ with right:
 st.divider()
 
 # ── Redundancy timeline ───────────────────────────────────────────────────────
-st.subheader("Redundancy announcements over time")
-
-red_dated = red.dropna(subset=["announcement_date"]).copy()
-red_dated["year_month"] = red_dated["announcement_date"].dt.to_period("Q").dt.to_timestamp()
-timeline = red_dated.groupby(["year_month", "compulsory"]).size().reset_index(name="count")
+st.subheader("Posts at risk over time")
 
 type_colours = {"compulsory": "#c0392b", "mixed": "#e67e22", "voluntary": "#27ae60"}
-fig3 = px.bar(
-    timeline, x="year_month", y="count", color="compulsory",
-    color_discrete_map=type_colours,
-    labels={"year_month": "", "count": "Announcements", "compulsory": "Type"},
-    height=240,
+
+red_dated = red.dropna(subset=["announcement_date"]).copy()
+red_dated["quarter"] = red_dated["announcement_date"].dt.to_period("Q").dt.to_timestamp()
+
+timeline = (
+    red_dated.groupby(["quarter", "compulsory"])["posts_at_risk"]
+    .sum().reset_index()
 )
-fig3.update_layout(margin=dict(t=10, b=10), legend_title_text="Type")
+# Cumulative across all types
+cumulative = (
+    red_dated.groupby("quarter")["posts_at_risk"].sum()
+    .sort_index().cumsum().reset_index()
+)
+
+fig3 = go.Figure()
+for typ, colour in type_colours.items():
+    d = timeline[timeline["compulsory"] == typ]
+    fig3.add_trace(go.Bar(
+        x=d["quarter"], y=d["posts_at_risk"],
+        name=typ.capitalize(), marker_color=colour,
+    ))
+fig3.add_trace(go.Scatter(
+    x=cumulative["quarter"], y=cumulative["posts_at_risk"],
+    name="Cumulative", mode="lines",
+    line=dict(color="#2c3e50", width=2, dash="dot"),
+    yaxis="y2",
+))
+fig3.update_layout(
+    barmode="stack",
+    height=260,
+    margin=dict(t=10, b=10),
+    legend_title_text="Type",
+    yaxis=dict(title="Posts at risk"),
+    yaxis2=dict(title="Cumulative", overlaying="y", side="right", showgrid=False),
+)
 st.plotly_chart(fig3, use_container_width=True)
+st.caption("Posts at risk where reported. Many announcements do not specify exact numbers.")
 
 st.divider()
 

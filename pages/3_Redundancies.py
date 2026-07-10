@@ -1,6 +1,7 @@
 """Redundancies map — job losses across the sector."""
 import streamlit as st
 import plotly.graph_objects as go
+import plotly.express as px
 import pandas as pd
 from utils import (
     load_institutions, load_constituencies, load_redundancies,
@@ -79,7 +80,7 @@ fig.add_trace(go.Scattergeo(
     lon=df["longitude"],
     mode="markers",
     marker=dict(
-        size=df["announcements"].clip(upper=8) * 3 + 6,
+        size=(df["total_posts"].fillna(df["announcements"] * 50).clip(upper=1000) / 1000 * 20 + 6),
         color=df["marker_colour"],
         line=dict(width=0.5, color="white"),
         opacity=0.85,
@@ -101,7 +102,48 @@ fig.update_layout(height=560, margin=dict(t=0, b=0, l=0, r=0))
 # Legend note
 st.plotly_chart(fig, use_container_width=True)
 st.caption("Red = includes compulsory redundancies. Orange = voluntary/mixed only. "
-           "Dot size reflects number of separate announcements.")
+           "Dot size reflects posts at risk (estimated where not specified).")
+
+# ── Posts at risk over time ────────────────────────────────────────────────────
+st.subheader("Posts at risk over time")
+
+type_colours = {"compulsory": "#c0392b", "mixed": "#e67e22", "voluntary": "#27ae60"}
+
+red_dated = red_filt.dropna(subset=["announcement_date"]).copy()
+red_dated["quarter"] = red_dated["announcement_date"].dt.to_period("Q").dt.to_timestamp()
+
+timeline = (
+    red_dated.groupby(["quarter", "compulsory"])["posts_at_risk"]
+    .sum().reset_index()
+)
+cumulative = (
+    red_dated.groupby("quarter")["posts_at_risk"].sum()
+    .sort_index().cumsum().reset_index()
+)
+
+fig_t = go.Figure()
+for typ, colour in type_colours.items():
+    d = timeline[timeline["compulsory"] == typ]
+    fig_t.add_trace(go.Bar(
+        x=d["quarter"], y=d["posts_at_risk"],
+        name=typ.capitalize(), marker_color=colour,
+    ))
+fig_t.add_trace(go.Scatter(
+    x=cumulative["quarter"], y=cumulative["posts_at_risk"],
+    name="Cumulative", mode="lines",
+    line=dict(color="#2c3e50", width=2, dash="dot"),
+    yaxis="y2",
+))
+fig_t.update_layout(
+    barmode="stack",
+    height=320,
+    margin=dict(t=10, b=10),
+    legend_title_text="Type",
+    yaxis=dict(title="Posts at risk (quarter)"),
+    yaxis2=dict(title="Cumulative posts at risk", overlaying="y", side="right", showgrid=False),
+)
+st.plotly_chart(fig_t, use_container_width=True)
+st.caption("Only announcements with known posts-at-risk figures are included in this chart.")
 
 # ── Table ───────────────────────────────────────���─────────────────────────────
 st.subheader("All redundancy entries")
@@ -119,4 +161,5 @@ tbl.columns = ["Institution", "Date", "Posts", "Type",
 st.dataframe(
     tbl.sort_values(["Institution", "Date"]).reset_index(drop=True),
     use_container_width=True, hide_index=True,
+    column_config={"Source": st.column_config.LinkColumn("Source", display_text="→ Source")},
 )
