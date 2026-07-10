@@ -80,7 +80,7 @@ fig.add_trace(go.Scattergeo(
     lon=df["longitude"],
     mode="markers",
     marker=dict(
-        size=(df["total_posts"].fillna(df["announcements"] * 50).clip(upper=1000) / 1000 * 20 + 6),
+        size=(pd.to_numeric(df["total_posts"], errors="coerce").fillna(df["announcements"] * 50).clip(upper=1000) / 1000 * 20 + 6).tolist(),
         color=df["marker_colour"],
         line=dict(width=0.5, color="white"),
         opacity=0.85,
