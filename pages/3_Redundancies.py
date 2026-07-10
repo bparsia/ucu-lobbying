@@ -1,7 +1,6 @@
 """Redundancies map — job losses across the sector."""
 import streamlit as st
 import plotly.graph_objects as go
-import plotly.express as px
 import pandas as pd
 from utils import (
     load_institutions, load_constituencies, load_redundancies,
@@ -143,11 +142,11 @@ st.caption("Only announcements with known posts-at-risk figures are included in 
 # ── Savings targets ───────────────────────────────────────────────────────────
 st.subheader("Reported savings targets / deficits")
 savings = (
-    red_filt.dropna(subset=["savings_target_gbpm"])
+    red_filt[red_filt.get("savings_target_gbpm", pd.Series(dtype=float)).notna()]
     .merge(inst[["ukprn", "name"]], on="ukprn", how="left")
     .groupby(["ukprn", "name"], as_index=False)["savings_target_gbpm"].max()
     .sort_values("savings_target_gbpm", ascending=False)
-)
+) if "savings_target_gbpm" in red_filt.columns else pd.DataFrame()
 if savings.empty:
     st.info("No savings figures in current filter.")
 else:

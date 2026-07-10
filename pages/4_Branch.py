@@ -315,7 +315,7 @@ with tab_points:
             + f"The most recent announcement was in {date_str}."
         )
 
-        max_savings = red_inst["savings_target_gbpm"].max()
+        max_savings = red_inst["savings_target_gbpm"].max() if "savings_target_gbpm" in red_inst.columns else None
         if pd.notna(max_savings):
             points.append(
                 f"**The institution has cited a savings target or deficit of £{max_savings:,.0f}m** "
