@@ -115,13 +115,15 @@ fig3.add_trace(go.Scatter(
     line=dict(color="#2c3e50", width=2, dash="dot"),
     yaxis="y2",
 ))
+_cum_max = cumulative["posts_at_risk"].max() if not cumulative.empty else 1
 fig3.update_layout(
     barmode="stack",
     height=260,
     margin=dict(t=10, b=10),
     legend_title_text="Type",
-    yaxis=dict(title="Posts at risk"),
-    yaxis2=dict(title="Cumulative", overlaying="y", side="right", showgrid=False),
+    yaxis=dict(title="Posts at risk", rangemode="tozero"),
+    yaxis2=dict(title="Cumulative", overlaying="y", side="right",
+                showgrid=False, rangemode="tozero", range=[0, _cum_max * 1.05]),
 )
 st.plotly_chart(fig3, use_container_width=True)
 st.caption("Posts at risk where reported. Many announcements do not specify exact numbers.")
