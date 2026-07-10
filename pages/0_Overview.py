@@ -22,7 +22,7 @@ latest = latest_financials(fin)
 # ── Headline metrics ──────────────────────────────────────────────────────────
 c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
 
-JNCHES_WORKFORCE = 361_000  # estimated total HE staff in JNCHES bargaining units
+HE_WORKFORCE = 361_000  # estimated total HE staff in UCU-recognised bargaining units
 
 n_inst      = len(inst)
 n_branch    = len(brs)
@@ -30,7 +30,7 @@ n_cons      = inst["constituency_2024"].nunique()
 n_red_inst  = red["institution_name"].nunique()
 n_red_ann   = len(red)
 total_posts = int(red["posts_at_risk"].sum())
-pct_members = total_posts / JNCHES_WORKFORCE * 100
+pct_members = total_posts / HE_WORKFORCE * 100
 
 c1.metric("HE Institutions", n_inst)
 c2.metric("UCU Branches (JNCHES)", n_branch)
