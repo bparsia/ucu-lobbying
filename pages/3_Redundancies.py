@@ -64,13 +64,13 @@ df["posts_str"] = df["total_posts"].apply(
     lambda v: f"{int(v):,}" if pd.notna(v) else "not specified"
 )
 df["hover"] = (
-    "<b>" + df["name"] + "</b><br>"
-    + df["constituency_2024"].fillna("") + "<br>"
-    + "MP: " + df["mp_name"].fillna("") + " (" + df["mp_party"].fillna("") + ")<br>"
-    + "Posts at risk: " + df["posts_str"] + "<br>"
+    "<b>" + df["name"].astype(str) + "</b><br>"
+    + df["constituency_2024"].fillna("").astype(str) + "<br>"
+    + "MP: " + df["mp_name"].fillna("").astype(str) + " (" + df["mp_party"].fillna("").astype(str) + ")<br>"
+    + "Posts at risk: " + df["posts_str"].astype(str) + "<br>"
     + "Announcements: " + df["announcements"].astype(str) + "<br>"
-    + "Latest: " + df["latest_date_str"] + "<br>"
-    + "Includes compulsory: " + df["has_compulsory"].map({True: "Yes", False: "No"})
+    + "Latest: " + df["latest_date_str"].astype(str) + "<br>"
+    + "Includes compulsory: " + df["has_compulsory"].map({True: "Yes", False: "No"}).astype(str)
 )
 
 fig = go.Figure()
