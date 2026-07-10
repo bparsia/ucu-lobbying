@@ -20,7 +20,9 @@ hepi  = load_hepi()
 latest = latest_financials(fin)
 
 # ── Headline metrics ──────────────────────────────────────────────────────────
-c1, c2, c3, c4, c5, c6 = st.columns(6)
+c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
+
+JNCHES_WORKFORCE = 361_000  # estimated total HE staff in JNCHES bargaining units
 
 n_inst      = len(inst)
 n_branch    = len(brs)
@@ -28,6 +30,7 @@ n_cons      = inst["constituency_2024"].nunique()
 n_red_inst  = red["institution_name"].nunique()
 n_red_ann   = len(red)
 total_posts = int(red["posts_at_risk"].sum())
+pct_members = total_posts / JNCHES_WORKFORCE * 100
 
 c1.metric("HE Institutions", n_inst)
 c2.metric("UCU Branches (JNCHES)", n_branch)
@@ -35,6 +38,7 @@ c3.metric("Constituencies with HE", n_cons)
 c4.metric("Institutions with redundancies", n_red_inst)
 c5.metric("Redundancy announcements", n_red_ann)
 c6.metric("Posts at risk (known)", f"{total_posts:,}")
+c7.metric("Posts at risk as % of HE workforce", f"{pct_members:.1f}%")
 
 st.divider()
 
