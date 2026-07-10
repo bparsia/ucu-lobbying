@@ -105,8 +105,6 @@ st.caption("Red = includes compulsory redundancies. Orange = voluntary/mixed onl
            "Dot size reflects posts at risk (estimated where not specified).")
 
 # ── Posts at risk over time ────────────────────────────────────────────────────
-st.subheader("Posts at risk over time")
-
 type_colours = {"compulsory": "#c0392b", "mixed": "#e67e22", "voluntary": "#27ae60"}
 
 red_dated = red_filt.dropna(subset=["announcement_date"]).copy()
@@ -116,11 +114,14 @@ timeline = (
     red_dated.groupby(["quarter", "compulsory"])["posts_at_risk"]
     .sum().reset_index()
 )
-cumulative = (
-    red_dated.groupby("quarter")["posts_at_risk"].sum()
-    .sort_index().cumsum().reset_index()
-)
+total_known = int(red_filt["posts_at_risk"].sum())
+n_unknown = red_filt["posts_at_risk"].isna().sum()
 
+mc1, mc2 = st.columns(2)
+mc1.metric("Total posts at risk (known figures)", f"{total_known:,}")
+mc2.metric("Announcements without post count", n_unknown)
+
+st.subheader("Posts at risk by quarter")
 fig_t = go.Figure()
 for typ, colour in type_colours.items():
     d = timeline[timeline["compulsory"] == typ]
@@ -128,21 +129,12 @@ for typ, colour in type_colours.items():
         x=d["quarter"], y=d["posts_at_risk"],
         name=typ.capitalize(), marker_color=colour,
     ))
-fig_t.add_trace(go.Scatter(
-    x=cumulative["quarter"], y=cumulative["posts_at_risk"],
-    name="Cumulative", mode="lines",
-    line=dict(color="#2c3e50", width=2, dash="dot"),
-    yaxis="y2",
-))
-_cum_max = cumulative["posts_at_risk"].max() if not cumulative.empty else 1
 fig_t.update_layout(
     barmode="stack",
-    height=320,
+    height=300,
     margin=dict(t=10, b=10),
     legend_title_text="Type",
-    yaxis=dict(title="Posts at risk (quarter)", rangemode="tozero"),
-    yaxis2=dict(title="Cumulative posts at risk", overlaying="y", side="right",
-                showgrid=False, rangemode="tozero", range=[0, _cum_max * 1.05]),
+    yaxis=dict(title="Posts at risk", rangemode="tozero"),
 )
 st.plotly_chart(fig_t, use_container_width=True)
 st.caption("Only announcements with known posts-at-risk figures are included in this chart.")

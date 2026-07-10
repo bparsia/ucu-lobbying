@@ -85,7 +85,7 @@ with right:
 st.divider()
 
 # ── Redundancy timeline ───────────────────────────────────────────────────────
-st.subheader("Posts at risk over time")
+st.subheader("Posts at risk by quarter")
 
 type_colours = {"compulsory": "#c0392b", "mixed": "#e67e22", "voluntary": "#27ae60"}
 
@@ -96,11 +96,6 @@ timeline = (
     red_dated.groupby(["quarter", "compulsory"])["posts_at_risk"]
     .sum().reset_index()
 )
-# Cumulative across all types
-cumulative = (
-    red_dated.groupby("quarter")["posts_at_risk"].sum()
-    .sort_index().cumsum().reset_index()
-)
 
 fig3 = go.Figure()
 for typ, colour in type_colours.items():
@@ -109,21 +104,12 @@ for typ, colour in type_colours.items():
         x=d["quarter"], y=d["posts_at_risk"],
         name=typ.capitalize(), marker_color=colour,
     ))
-fig3.add_trace(go.Scatter(
-    x=cumulative["quarter"], y=cumulative["posts_at_risk"],
-    name="Cumulative", mode="lines",
-    line=dict(color="#2c3e50", width=2, dash="dot"),
-    yaxis="y2",
-))
-_cum_max = cumulative["posts_at_risk"].max() if not cumulative.empty else 1
 fig3.update_layout(
     barmode="stack",
     height=260,
     margin=dict(t=10, b=10),
     legend_title_text="Type",
     yaxis=dict(title="Posts at risk", rangemode="tozero"),
-    yaxis2=dict(title="Cumulative", overlaying="y", side="right",
-                showgrid=False, rangemode="tozero", range=[0, _cum_max * 1.05]),
 )
 st.plotly_chart(fig3, use_container_width=True)
 st.caption("Posts at risk where reported. Many announcements do not specify exact numbers.")
