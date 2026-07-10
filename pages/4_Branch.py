@@ -315,6 +315,13 @@ with tab_points:
             + f"The most recent announcement was in {date_str}."
         )
 
+        max_savings = red_inst["savings_target_gbpm"].max()
+        if pd.notna(max_savings):
+            points.append(
+                f"**The institution has cited a savings target or deficit of £{max_savings:,.0f}m** "
+                f"in connection with its restructuring programme."
+            )
+
     # Render
     for i, point in enumerate(points, 1):
         st.markdown(f"{i}. {point}")

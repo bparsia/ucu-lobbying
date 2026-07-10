@@ -73,6 +73,7 @@ def load_hepi() -> pd.DataFrame:
 def load_redundancies() -> pd.DataFrame:
     df = pd.read_csv(DATA / "redundancies.csv", dtype={"ukprn": str})
     df["posts_at_risk"] = pd.to_numeric(df["posts_at_risk"], errors="coerce")
+    df["savings_target_gbpm"] = pd.to_numeric(df["savings_target_gbpm"], errors="coerce")
     df["announcement_date"] = pd.to_datetime(df["announcement_date"], errors="coerce")
     return df
 

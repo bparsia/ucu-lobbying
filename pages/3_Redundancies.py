@@ -140,6 +140,24 @@ st.plotly_chart(fig_t, use_container_width=True)
 st.caption("Only announcements with known posts-at-risk figures are included in this chart.")
 
 # ── Table ───────────────────────────────────────���─────────────────────────────
+# ── Savings targets ───────────────────────────────────────────────────────────
+st.subheader("Reported savings targets / deficits")
+savings = (
+    red_filt.dropna(subset=["savings_target_gbpm"])
+    .merge(inst[["ukprn", "name"]], on="ukprn", how="left")
+    .groupby(["ukprn", "name"], as_index=False)["savings_target_gbpm"].max()
+    .sort_values("savings_target_gbpm", ascending=False)
+)
+if savings.empty:
+    st.info("No savings figures in current filter.")
+else:
+    total_savings = savings["savings_target_gbpm"].sum()
+    st.metric("Total reported savings targets (known figures)", f"£{total_savings:,.0f}m")
+    stbl = savings[["name", "savings_target_gbpm"]].copy()
+    stbl.columns = ["Institution", "Savings target (£m)"]
+    st.dataframe(stbl, use_container_width=True, hide_index=True)
+    st.caption("Parsed from QMUCU tracker notes. Figures may relate to different years or programme scopes. Manual verification recommended.")
+
 st.subheader("All redundancy entries")
 tbl = red_filt.merge(inst[["ukprn", "name", "constituency_2024"]], on="ukprn", how="left")
 tbl = tbl.merge(cons[["constituency_name", "mp_name", "mp_party"]],
