@@ -161,6 +161,7 @@ st.subheader("All redundancy entries")
 tbl = red_filt.merge(inst[["ukprn", "name", "constituency_2024"]], on="ukprn", how="left")
 tbl = tbl.merge(cons[["constituency_name", "mp_name", "mp_party"]],
                 left_on="constituency_2024", right_on="constituency_name", how="left")
+tbl["name"] = tbl["name"].fillna(tbl["institution_name"])  # fallback for unmatched ukprn
 tbl["announcement_date"] = tbl["announcement_date"].dt.strftime("%b %Y")
 tbl["posts_at_risk"] = tbl["posts_at_risk"].apply(
     lambda v: f"{int(v):,}" if pd.notna(v) else ""
